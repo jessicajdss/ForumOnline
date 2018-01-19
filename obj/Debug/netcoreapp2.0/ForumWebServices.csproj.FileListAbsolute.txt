@@ -1,0 +1,10 @@
+C:\Users\FIC\Desktop\ForumWebServices\bin\Debug\netcoreapp2.0\ForumWebServices.deps.json
+C:\Users\FIC\Desktop\ForumWebServices\bin\Debug\netcoreapp2.0\ForumWebServices.runtimeconfig.json
+C:\Users\FIC\Desktop\ForumWebServices\bin\Debug\netcoreapp2.0\ForumWebServices.runtimeconfig.dev.json
+C:\Users\FIC\Desktop\ForumWebServices\bin\Debug\netcoreapp2.0\ForumWebServices.dll
+C:\Users\FIC\Desktop\ForumWebServices\bin\Debug\netcoreapp2.0\ForumWebServices.pdb
+C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.csproj.CoreCompileInputs.cache
+C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.AssemblyInfoInputs.cache
+C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.AssemblyInfo.cs
+C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.dll
+C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.pdb
