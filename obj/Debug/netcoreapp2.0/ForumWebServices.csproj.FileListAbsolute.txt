@@ -13,3 +13,8 @@ C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.A
 C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.AssemblyInfo.cs
 C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.dll
 C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.pdb
+C:\Users\fic.INFO\Desktop\ForumOnline\bin\Debug\netcoreapp2.0\ForumWebServices.deps.json
+C:\Users\fic.INFO\Desktop\ForumOnline\bin\Debug\netcoreapp2.0\ForumWebServices.runtimeconfig.json
+C:\Users\fic.INFO\Desktop\ForumOnline\bin\Debug\netcoreapp2.0\ForumWebServices.runtimeconfig.dev.json
+C:\Users\fic.INFO\Desktop\ForumOnline\bin\Debug\netcoreapp2.0\ForumWebServices.dll
+C:\Users\fic.INFO\Desktop\ForumOnline\bin\Debug\netcoreapp2.0\ForumWebServices.pdb

@@ -6,11 +6,56 @@ namespace ForumWebServices.Models
 {
     public class DAOUsuarios:Conexao
     {
-        SqlConnection con = null;
-        SqlCommand cmd = null;
-        SqlDataReader rd = null;
+        //SqlConnection con = null;
+        //SqlCommand cmd = null;
+        //SqlDataReader rd = null;
 
-        string conexao = @"Data Source = .\SqlExpress;Initial Catalog = Forum;user id=sa;password=senai@123";
+        //string conexao = @"Data Source = .\SqlExpress;Initial Catalog = Forum;user id=sa;password=senai@123";
+
+
+        // public List<Usuario> ListarUsuarios()
+        // {
+
+        //     List<Usuario> usuarios = new List<Usuario>();
+
+        //     try
+        //     {
+        //         con = new SqlConnection(conexao);
+        //         con.Open();
+        //         cmd = new SqlCommand();
+        //         cmd.Connection = con;
+        //         cmd.CommandType = CommandType.Text;
+        //         cmd.CommandText = "Select * from tbUsuario";
+        //         rd = cmd.ExecuteReader();
+
+        //         while (rd.Read())
+        //         {
+        //             usuarios.Add(new Usuario()
+        //             {
+        //                 idUsuario = rd.GetInt32(0),
+        //                 nomeUsuario = rd.GetString(1),
+        //                 login = rd.GetString(2),
+        //                 senha = rd.GetString(3),
+        //                 dataCadastro = rd.GetDateTime(4)
+        //             });
+        //         }
+
+        //     }
+        //     catch (SqlException se)
+        //     {
+        //         throw new ConstraintException(se.Message);
+        //     }
+        //     catch (ConstraintException ex)
+        //     {
+        //         throw new ConstraintException(ex.Message);
+        //     }
+        //     finally
+        //     {
+        //         con.Close();
+        //     }
+        //     return usuarios;
+
+        // }
 
 
         public List<Usuario> ListarUsuarios()
@@ -20,34 +65,31 @@ namespace ForumWebServices.Models
 
             try
             {
-                con = new SqlConnection(conexao);
+                con = new SqlConnection(Caminho());
                 con.Open();
-                cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Select * from tbUsuario";
-                rd = cmd.ExecuteReader();
+                cmd = new SqlCommand("Select * from tbUsuario",con);
+                sdr = cmd.ExecuteReader();
 
-                while (rd.Read())
+                while (sdr.Read())
                 {
                     usuarios.Add(new Usuario()
                     {
-                        idUsuario = rd.GetInt32(0),
-                        nomeUsuario = rd.GetString(1),
-                        login = rd.GetString(2),
-                        senha = rd.GetString(3),
-                        dataCadastro = rd.GetDateTime(4)
+                        idUsuario = sdr.GetInt32(0),
+                        nomeUsuario = sdr.GetString(1),
+                        login = sdr.GetString(2),
+                        senha = sdr.GetString(3),
+                        dataCadastro = sdr.GetDateTime(4)
                     });
                 }
 
             }
             catch (SqlException se)
             {
-                throw new ConstraintException(se.Message);
+                throw new ConstraintException("Erro ao tentar ler a tabela de usuários -> "+se.Message);
             }
             catch (ConstraintException ex)
             {
-                throw new ConstraintException(ex.Message);
+                throw new ConstraintException("Erro inesperado -> "+ex.Message);
             }
             finally
             {
@@ -57,23 +99,26 @@ namespace ForumWebServices.Models
 
         }
 
-
         public bool Cadastro(Usuario usuarios)
         {
             bool resultado = false;
             try
             {
-                con = new SqlConnection(conexao);
-                con.Open();
+                con = new SqlConnection();                
                 cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into tbUsuario(nomeUsuario,login,senha, dataCadastro) values (@n,@l,@s,@d)";
+                
+                string inserir = "insert into tbUsuario(nomeUsuario,login,senha, dataCadastro) values (@n,@l,@s,@d)";
                 cmd.Parameters.AddWithValue("@n", usuarios.nomeUsuario);
                 cmd.Parameters.AddWithValue("@l", usuarios.login);
                 cmd.Parameters.AddWithValue("@s", usuarios.senha);
-                cmd.Parameters.AddWithValue("@d", usuarios.dataCadastro);
+                cmd.Parameters.AddWithValue("@d", System.DateTime.Now);
 
+                con.ConnectionString=Caminho();
+                con.Open();
+                cmd.Connection = con;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = inserir;
                 
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0)
@@ -83,7 +128,7 @@ namespace ForumWebServices.Models
             }
             catch (SqlException se)
             {
-                throw new ConstraintException("Erro SQL -> "+se.Message);
+                throw new ConstraintException("Erro ao cadastrar -> "+se.Message);
             }
             catch (ConstraintException ex)
             {
@@ -111,7 +156,7 @@ namespace ForumWebServices.Models
                 cmd.Parameters.AddWithValue("@n", usuarios.nomeUsuario);
                 cmd.Parameters.AddWithValue("@l", usuarios.login);
                 cmd.Parameters.AddWithValue("@s", usuarios.senha);
-                cmd.Parameters.AddWithValue("@d", usuarios.DateTime.Now);
+                cmd.Parameters.AddWithValue("@d", System.DateTime.Now);
 
                 con.ConnectionString=Caminho();
                 con.Open();
