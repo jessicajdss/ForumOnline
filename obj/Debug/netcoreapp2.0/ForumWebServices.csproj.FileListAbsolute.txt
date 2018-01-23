@@ -8,3 +8,8 @@ C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.A
 C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.AssemblyInfo.cs
 C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.dll
 C:\Users\FIC\Desktop\ForumWebServices\obj\Debug\netcoreapp2.0\ForumWebServices.pdb
+C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.csproj.CoreCompileInputs.cache
+C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.AssemblyInfoInputs.cache
+C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.AssemblyInfo.cs
+C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.dll
+C:\Users\fic.INFO\Desktop\ForumOnline\obj\Debug\netcoreapp2.0\ForumWebServices.pdb

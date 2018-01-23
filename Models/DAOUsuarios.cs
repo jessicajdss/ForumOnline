@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace ForumWebServices.Models
 {
-    public class DAOUsuarios
+    public class DAOUsuarios:Conexao
     {
         SqlConnection con = null;
         SqlCommand cmd = null;
@@ -74,7 +74,7 @@ namespace ForumWebServices.Models
                 cmd.Parameters.AddWithValue("@s", usuarios.senha);
                 cmd.Parameters.AddWithValue("@d", usuarios.dataCadastro);
 
-
+                
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0)
                     resultado = true;
@@ -97,76 +97,90 @@ namespace ForumWebServices.Models
             return resultado;
         }
 
-        // public bool Editar(Usuario usuarios)
-        // {
-        //     bool resultado = false;
-        //     try
-        //     {
-        //         con = new SqlConnection(conexao);
-        //         con.Open();
-        //         cmd = new SqlCommand();
-        //         cmd.Connection = con;
-        //         cmd.CommandType = CommandType.Text;
-        //         cmd.CommandText = "update tbUsuario set nomeUsuario = @n, login = @l, senha = @s where idUsuario = @id";
-        //         cmd.Parameters.AddWithValue("@id", usuarios.idUsuario);
-        //         cmd.Parameters.AddWithValue("@n", usuarios.nomeUsuario);
-        //         cmd.Parameters.AddWithValue("@l", usuarios.login);
-        //         cmd.Parameters.AddWithValue("@s", usuarios.senha);
+        public bool Editar(Usuario usuarios)
+        {
+            bool resultado = false;
+            try
+            {
+                con = new SqlConnection();                
+                cmd = new SqlCommand();
+                
+                string atualizar = "update tbUsuario set nomeUsuario = @n, login = @l, senha = @s," + 
+                "dataCadastro=@d where idUsuario = @id";
+                cmd.Parameters.AddWithValue("@id", usuarios.idUsuario);
+                cmd.Parameters.AddWithValue("@n", usuarios.nomeUsuario);
+                cmd.Parameters.AddWithValue("@l", usuarios.login);
+                cmd.Parameters.AddWithValue("@s", usuarios.senha);
+                cmd.Parameters.AddWithValue("@d", usuarios.DateTime.Now);
 
-        //         int r = cmd.ExecuteNonQuery();
-        //         if (r > 0)
-        //             resultado = true;
+                con.ConnectionString=Caminho();
+                con.Open();
+                cmd.Connection = con;
 
-        //         cmd.Parameters.Clear();
-        //     }
-        //     catch (SqlException se)
-        //     {
-        //         throw new ConstraintException(se.Message);
-        //     }
-        //     catch (ConstraintException ex)
-        //     {
-        //         throw new ConstraintException(ex.Message);
-        //     }
-        //     finally
-        //     {
-        //         con.Close();
-        //     }
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = atualizar;
 
-        //     return resultado;
-        // }
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0)
+                    resultado = true;
 
-        // public bool Apagar(int id)
-        // {
-        //     bool resultado = false;
-        //     try
-        //     {
-        //         con = new SqlConnection(conexao);
-        //         con.Open();
-        //         cmd = new SqlCommand();
-        //         cmd.CommandType = CommandType.Text;
-        //         cmd.CommandText = "delete from Cidades where Id = @id";
-        //         cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.Clear();
+            }
+            catch (SqlException se)
+            {
+                throw new ConstraintException("Erro ao tentar atualizar -> "+se.Message);
+            }
+            catch (ConstraintException ex)
+            {
+                throw new ConstraintException("Erro inesperado -> "+ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
 
-        //         int r = cmd.ExecuteNonQuery();
-        //         if (r > 0)
-        //             resultado = true;
+            return resultado;
+        }
 
-        //         cmd.Parameters.Clear();
-        //     }
-        //     catch (SqlException se)
-        //     {
-        //         throw new ConstraintException(se.Message);
-        //     }
-        //     catch (ConstraintException ex)
-        //     {
-        //         throw new ConstraintException(ex.Message);
-        //     }
-        //     finally
-        //     {
-        //         con.Close();
-        //     }
+        public bool Apagar(int id)
+        {
+             bool resultado = false;
+            try
+            {
+                con = new SqlConnection();                
+                cmd = new SqlCommand();
+                
+                string apagar = "delete from tbUsuario where idUsuario = @id";
+                cmd.Parameters.AddWithValue("@id",id);
 
-        //     return resultado;
-        // }   
+
+                con.ConnectionString=Caminho();
+                con.Open();
+                cmd.Connection = con;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = apagar;
+
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0)
+                    resultado = true;
+
+                cmd.Parameters.Clear();
+            }
+            catch (SqlException se)
+            {
+                throw new ConstraintException("Erro ao tentar apagar -> "+se.Message);
+            }
+            catch (ConstraintException ex)
+            {
+                throw new ConstraintException("Erro inesperado -> "+ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return resultado;
+        }
     }
 }
