@@ -128,11 +128,11 @@ namespace ForumWebServices.Models
             }
             catch (SqlException se)
             {
-                throw new ConstraintException("Erro ao cadastrar -> "+se.Message);
+                throw new ConstraintException("Erro ao cadastrar -> "+ se.Message);
             }
             catch (ConstraintException ex)
             {
-                throw new ConstraintException("Erro inesperado ->" + ex.Message);
+                throw new ConstraintException("Erro inesperado -> " + ex.Message);
             }
             finally
             {
